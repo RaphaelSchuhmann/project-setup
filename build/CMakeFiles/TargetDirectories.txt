@@ -1,0 +1,3 @@
+/home/raphael/Development/project-setup/build/CMakeFiles/ps.dir
+/home/raphael/Development/project-setup/build/CMakeFiles/edit_cache.dir
+/home/raphael/Development/project-setup/build/CMakeFiles/rebuild_cache.dir
