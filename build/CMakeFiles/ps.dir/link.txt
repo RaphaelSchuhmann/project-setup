@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/ps.dir/src/inputsys.cpp.o CMakeFiles/ps.dir/src/main.cpp.o CMakeFiles/ps.dir/src/projectgen.cpp.o CMakeFiles/ps.dir/src/rollback.cpp.o -o ps 
