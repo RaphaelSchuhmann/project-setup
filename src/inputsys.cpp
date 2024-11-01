@@ -67,7 +67,7 @@ std::string* getPrefs() {
 std::string input(std::string question) {
   std::string input;
   std::cout << question;
-  std::cin >> input;
+  std::getline(std::cin, input);
 
   if (std::cin.fail()) {
     std::cerr << "Input failed!" << std::endl;
