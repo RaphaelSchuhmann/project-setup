@@ -1,0 +1,17 @@
+/build/
+
+CMakeCache.txt
+CMakeFiles/
+
+*.o
+
+*.out
+*.exe
+
+*~
+*.bak
+
+.idea/
+*.swp
+*.swo
+*.dSYM/
