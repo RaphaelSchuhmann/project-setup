@@ -11,6 +11,6 @@ bool doesDirExist(const std::string& path);
 std::string convertShortDir(const std::string& projectDir);
 std::string readTemplate(const std::string& filePath);
 void generateFile(const std::string& templatePath, const std::string& projectPath, std::string file, std::string* prefs = nullptr);
-std::string replacePlaceholders(const std::string& templateStr, const std::string& projectName, const std::string& language, const std::string& version);
+std::string replacePlaceholders(const std::string& templateStr, const std::string& projectName, const std::string& language, const std::string& version, const std::string& path);
 
 #endif // !PROJECTGEN_H

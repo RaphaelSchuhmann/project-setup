@@ -8,6 +8,7 @@
 #include <vector>
 
 #include "projectgen.h"
+#include "rollback.h"
 
 namespace fs = std::filesystem;
 
@@ -24,6 +25,7 @@ void generateFolders(const std::string& projectName, const std::string& inputPro
 
   if (doesDirExist(projectDirectory)) {
     std::cerr << "Error: Project directory already exists: " << projectDirectory << std::endl;
+    exit(1);
   }
 
   try {
@@ -36,16 +38,18 @@ void generateFolders(const std::string& projectName, const std::string& inputPro
 
     if (!doesDirExist(projectDirectory) || !doesDirExist(projectDirectory + "src/") || !doesDirExist(projectDirectory + "include/") || !doesDirExist(projectDirectory + "build/")) {
       std::cerr << "Error generating project directory" << std::endl;
+      fatalErrorRollback(projectDirectory);
       exit(1);
     }
   } catch (const fs::filesystem_error& e) {
     std::cerr << "Error generating project directories: " << e.what() << std::endl;
+    fatalErrorRollback(projectDirectory);
     exit(1);
   }
 }
 
 void generateFiles(std::string* prefs) {
-  std::string dir = convertShortDir(prefs[1]);
+  std::string dir = (prefs[1][0] == '~') ? convertShortDir(prefs[1]) : prefs[1];
 
   dir += prefs[0] + "/";
 
@@ -59,6 +63,10 @@ void generateFiles(std::string* prefs) {
   } else if (prefs[2] == "c") {
     generateFile(convertShortDir("~/Development/project-setup/templates/mainC.txt"), dir + "src/", "main.c");
     generateFile(convertShortDir("~/Development/project-setup/templates/gitignoreC.txt"), dir, ".gitignore");
+  } else {
+    std::cerr << "Language not supported" << prefs[2] << std::endl;
+    fatalErrorRollback(dir);
+    exit(1);
   }
 }
 
@@ -75,7 +83,7 @@ std::string readTemplate(const std::string& path) {
   std::ifstream file(path);
   if (!file.is_open()) {
     std::cerr << "Error opening template file: " + path;
-    exit(1);
+    return "";
   }
 
   std::stringstream buffer;
@@ -83,7 +91,7 @@ std::string readTemplate(const std::string& path) {
   return buffer.str();
 }
 
-std::string replacePlaceholders(const std::string& templateStr, const std::string& projectName, const std::string& language, const std::string& version) {
+std::string replacePlaceholders(const std::string& templateStr, const std::string& projectName, const std::string& language, const std::string& version, const std::string& path) {
   std::string result = templateStr;
 
   std::string lang;
@@ -93,6 +101,7 @@ std::string replacePlaceholders(const std::string& templateStr, const std::strin
     lang = "C";
   } else {
     std::cerr << "Language is not supported: " << language << std::endl;
+    fatalErrorRollback(path);
     exit(1);
   }
 
@@ -103,6 +112,7 @@ std::string replacePlaceholders(const std::string& templateStr, const std::strin
     fileEnding = language;
   } else {
     std::cerr << "Language is not supported: " << language << std::endl;
+    fatalErrorRollback(path);
     exit(1);
   }
   
@@ -138,12 +148,13 @@ std::string replacePlaceholders(const std::string& templateStr, const std::strin
 void generateFile(const std::string& templatePath, const std::string& projectPath, std::string file, std::string* prefs) {
   if (prefs != nullptr) {
     std::string templateContent = readTemplate(templatePath);
-    
-    std::string populatedTemplate = replacePlaceholders(templateContent, prefs[0], prefs[2], prefs[3]);
+
+    std::string populatedTemplate = replacePlaceholders(templateContent, prefs[0], prefs[2], prefs[3], projectPath);
 
     std::ofstream File(projectPath + file);
     if (!File) {
       std::cerr << "Error generating file: " << file << std::endl;
+      fatalErrorRollback(projectPath);
       exit(1);
     }
 
@@ -154,6 +165,7 @@ void generateFile(const std::string& templatePath, const std::string& projectPat
     std::ofstream File(projectPath + file);
     if (!File) {
       std::cerr << "Error generating file: " << file << std::endl;
+      fatalErrorRollback(projectPath);
       exit(1);
     }
 

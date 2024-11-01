@@ -201,6 +201,30 @@ src/projectgen.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ps.dir/build.make CMakeFiles/ps.dir/src/projectgen.cpp.s
 .PHONY : src/projectgen.cpp.s
 
+src/rollback.o: src/rollback.cpp.o
+.PHONY : src/rollback.o
+
+# target to build an object file
+src/rollback.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ps.dir/build.make CMakeFiles/ps.dir/src/rollback.cpp.o
+.PHONY : src/rollback.cpp.o
+
+src/rollback.i: src/rollback.cpp.i
+.PHONY : src/rollback.i
+
+# target to preprocess a source file
+src/rollback.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ps.dir/build.make CMakeFiles/ps.dir/src/rollback.cpp.i
+.PHONY : src/rollback.cpp.i
+
+src/rollback.s: src/rollback.cpp.s
+.PHONY : src/rollback.s
+
+# target to generate assembly for a file
+src/rollback.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ps.dir/build.make CMakeFiles/ps.dir/src/rollback.cpp.s
+.PHONY : src/rollback.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -219,6 +243,9 @@ help:
 	@echo "... src/projectgen.o"
 	@echo "... src/projectgen.i"
 	@echo "... src/projectgen.s"
+	@echo "... src/rollback.o"
+	@echo "... src/rollback.i"
+	@echo "... src/rollback.s"
 .PHONY : help
 
 

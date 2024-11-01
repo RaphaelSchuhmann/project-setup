@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/ps.dir/src/main.cpp.o.d"
   "CMakeFiles/ps.dir/src/projectgen.cpp.o"
   "CMakeFiles/ps.dir/src/projectgen.cpp.o.d"
+  "CMakeFiles/ps.dir/src/rollback.cpp.o"
+  "CMakeFiles/ps.dir/src/rollback.cpp.o.d"
   "ps"
   "ps.pdb"
 )
