@@ -17,5 +17,8 @@ int main(int argc, char* argv[]) {
   generateFolders(prefs[0], prefs[1]);
   generateFiles(prefs);
 
+  std::cout << "Project generated!" << std::endl;
+
+  delete[] prefs;
   return 0;
 }
