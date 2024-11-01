@@ -12,5 +12,6 @@ std::string convertShortDir(const std::string& projectDir);
 std::string readTemplate(const std::string& filePath);
 void generateFile(const std::string& templatePath, const std::string& projectPath, std::string file, std::string* prefs = nullptr);
 std::string replacePlaceholders(const std::string& templateStr, const std::string& projectName, const std::string& language, const std::string& version, const std::string& path);
+bool containsSpaces(const std::string& str);
 
 #endif // !PROJECTGEN_H

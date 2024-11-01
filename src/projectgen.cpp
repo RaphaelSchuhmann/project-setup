@@ -6,6 +6,7 @@
 #include <pwd.h>
 #include <unistd.h>
 #include <vector>
+#include <algorithm>
 
 #include "projectgen.h"
 #include "rollback.h"
@@ -91,8 +92,20 @@ std::string readTemplate(const std::string& path) {
   return buffer.str();
 }
 
+bool containsSpaces(const std::string& str) {
+  return str.find(' ') != std::string::npos;
+}
+
 std::string replacePlaceholders(const std::string& templateStr, const std::string& projectName, const std::string& language, const std::string& version, const std::string& path) {
   std::string result = templateStr;
+
+  std::string name;
+  if (containsSpaces(projectName)) {
+    name = projectName;
+    name.erase(std::remove(name.begin(), name.end(), ' '), name.end());
+  } else {
+    name = projectName;
+  }
 
   std::string lang;
   if (language == "c++") {
@@ -119,8 +132,8 @@ std::string replacePlaceholders(const std::string& templateStr, const std::strin
   size_t pos = 0;
 
   while ((pos = result.find("{{PROJECT_NAME}}", pos)) != std::string::npos) {
-    result.replace(pos, std::string("{{PROJECT_NAME}}").length(), projectName);
-    pos += projectName.length();
+    result.replace(pos, std::string("{{PROJECT_NAME}}").length(), name);
+    pos += name.length();
   }
 
   pos = 0;
