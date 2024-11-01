@@ -54,15 +54,15 @@ void generateFiles(std::string* prefs) {
   dir += prefs[0] + "/";
 
   if (prefs[4] == "n") {
-    generateFile(convertShortDir("~/Development/project-setup/templates/CMakeListsTemplate.txt"), dir, "CMakeLists.txt", prefs);
+    generateFile("/usr/local/share/ps/templates/CMakeListsTemplate.txt", dir, "CMakeLists.txt", prefs);
   }
 
   if (prefs[2] == "c++") {
-    generateFile(convertShortDir("~/Development/project-setup/templates/mainCpp.txt"), dir + "src/", "main.cpp");
-    generateFile(convertShortDir("~/Development/project-setup/templates/gitignoreCpp.txt"), dir, ".gitignore");
+    generateFile("/usr/local/share/ps/templates/mainCpp.txt", dir + "src/", "main.cpp");
+    generateFile("/usr/local/share/ps/templates/gitignoreCpp.txt", dir, ".gitignore");
   } else if (prefs[2] == "c") {
-    generateFile(convertShortDir("~/Development/project-setup/templates/mainC.txt"), dir + "src/", "main.c");
-    generateFile(convertShortDir("~/Development/project-setup/templates/gitignoreC.txt"), dir, ".gitignore");
+    generateFile("/usr/local/share/ps/templates/mainC.txt", dir + "src/", "main.c");
+    generateFile("/usr/local/share/ps/templates/gitignoreC.txt", dir, ".gitignore");
   } else {
     std::cerr << "Language not supported" << prefs[2] << std::endl;
     fatalErrorRollback(dir);
