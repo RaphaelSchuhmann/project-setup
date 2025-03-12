@@ -1,6 +1,6 @@
 # Project-Setup
 
-Project-Setup is a tool to generate a default project directory for c/c++ projects.
+Project-Setup is a tool to generate a default project directory for C/C++ projects.
 
 ## Features
 - Generates a complete project directory structure for C/C++.
