@@ -6,6 +6,8 @@ Project-Setup is a tool to generate a default project directory for C/C++ projec
 - Generates a complete project directory structure for C/C++.
 - Includes customizable template files.
 - Simple command-line interface for quick usage.
+### Coming Soon
+- Option to allow custom compilers
 
 ## Prerequisites
 - CMake version 3.10 or higher
