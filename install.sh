@@ -6,11 +6,11 @@ cd build
 cmake ..
 make
 
-sudo mkdir -p /usr/local/share/ps/templates/
-sudo cp -r ../templates/* /usr/local/share/ps/templates/
-sudo chmod -R 755 /usr/local/share/ps/templates/
+sudo mkdir -p /usr/local/share/pset/templates/
+sudo cp -r ../templates/* /usr/local/share/pset/templates/
+sudo chmod -R 755 /usr/local/share/pset/templates/
 
-sudo mv ps /usr/local/bin/
-sudo chmod +x /usr/local/bin/ps
+sudo mv pset /usr/local/bin/
+sudo chmod +x /usr/local/bin/pset
 
 echo "Build and installation completed successfully!"

@@ -6,7 +6,7 @@
 
 std::string* handleInput(int argc, char* argv[]) {
   if (argc < 2) {
-    std::cerr << "Usage: ps create" << std::endl;
+    std::cerr << "Usage: pset create" << std::endl;
     exit(1);
   }
 
